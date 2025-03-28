@@ -1,0 +1,18 @@
+{
+  "name": "uplay-r2-unlocker",
+  "version": "0.0.0",
+  "license": "0BSD",
+  "dependencies": [
+    "cpr",
+    "nlohmann-json",
+    "polyhook2",
+    "spdlog"
+  ],
+  "builtin-baseline": "b86c0c35b88e2bf3557ff49dc831689c2f085090",
+  "overrides": [
+	{
+		"name": "polyhook2",
+		"version" : "2022-03-01"
+	}
+  ]
+}
