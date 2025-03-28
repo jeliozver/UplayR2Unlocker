@@ -1,0 +1,11 @@
+{
+  "name": "koala-box",
+  "version": "0.0.0",
+  "license": "0BSD",
+  "dependencies": [
+    "cpr",
+    "nlohmann-json",
+    "polyhook2",
+    "spdlog"
+  ]
+}

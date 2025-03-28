@@ -1,0 +1,6 @@
+#pragma once
+
+#define ORIGINAL_DLL "${ORIGINAL_DLL}"
+#define LEGACY_ORIGINAL_DLL "${LEGACY_ORIGINAL_DLL}"
+
+#define STORE_DLL "${STORE_DLL}"
