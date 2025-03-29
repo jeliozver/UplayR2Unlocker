@@ -285,56 +285,54 @@ DLL_EXPORT(const char*) UPC_InstallLanguageGet(void* context) {
 }
 
 DLL_EXPORT(int) UPC_ApplicationIdGet(void* context, const char** outAppId) {
-    logger->debug(__func__);
+  logger->debug(__func__);
 
-    GET_ORIGINAL_FUNCTION(UPC_ApplicationIdGet)
-    const int result = UPC_ApplicationIdGet_o(context, outAppId);
+  GET_ORIGINAL_FUNCTION(UPC_ApplicationIdGet)
+  const int result = UPC_ApplicationIdGet_o(context, outAppId);
 
-    if (outAppId) {
-        std::string str = *outAppId;
+  if (outAppId) {
+    std::string str = *outAppId;
 
-        logger->info("⚡ outAppId: {}", str);
-    }
+    logger->info("⚡ outAppId: {}", str);
+  }
 
-    return result;
+  return result;
 }
 
 DLL_EXPORT(int) UPC_InstallChunkListGet(void* context, ChunkList** outChunkList) {
-    logger->debug(__func__);
+  logger->debug(__func__);
     
-    GET_ORIGINAL_FUNCTION(UPC_InstallChunkListGet)
+  GET_ORIGINAL_FUNCTION(UPC_InstallChunkListGet)
     
-    const int result = UPC_InstallChunkListGet_o(context, outChunkList);
+  const int result = UPC_InstallChunkListGet_o(context, outChunkList);
 
-    if (outChunkList) {
-        ChunkList* chunkListLegit = *outChunkList;
+  if (outChunkList) {
+    ChunkList* chunkListLegit = *outChunkList;
 
-        for (uint32_t i = 0; i < chunkListLegit->number_chunks; i++) {
-            logger->info("⚡ chunk id from legit game: {}", chunkListLegit->chunk_ids[i]);
-        }
-
-        if (config.chunks.size() > 0)
-        {
-            logger->info("⚡ Adding chunks from config...");
-
-            ChunkList* chunks = new ChunkList();
-            chunks->number_chunks = config.chunks.size();
-            chunks->chunk_ids = new uint32_t[chunks->number_chunks];
-
-            int i = 0;
-
-            for (auto& chunk : config.chunks)
-            {
-                logger->info("⚡ chunk id from config: {}", chunk);
-                chunks->chunk_ids[i] = chunk;
-                i++;
-            }
-
-            *outChunkList = chunks;
-        }
+    for (uint32_t i = 0; i < chunkListLegit->number_chunks; i++) {
+      logger->info("⚡ chunk id from legit game: {}", chunkListLegit->chunk_ids[i]);
     }
 
-    return result;
+    if (config.chunks.size() > 0) {
+      logger->info("⚡ Adding chunks from config...");
+
+      ChunkList* chunks = new ChunkList();
+      chunks->number_chunks = config.chunks.size();
+      chunks->chunk_ids = new uint32_t[chunks->number_chunks];
+
+      unsigned i = 0;
+
+      for (auto& chunk : config.chunks) {
+        logger->info("⚡ chunk id from config: {}", chunk);
+        chunks->chunk_ids[i] = chunk;
+        i++;
+      }
+
+      *outChunkList = chunks;
+    }
+  }
+
+  return result;
 }
 
 DLL_EXPORT(int) UPC_AchievementListGet(
